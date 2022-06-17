@@ -8,4 +8,4 @@ node_modules
 .env
 
 # Ignore files related to API keys
-package-lock.jsonsss
+package-lock.json
