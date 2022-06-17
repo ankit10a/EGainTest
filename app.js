@@ -1,5 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv');
+const router = require('./routes/index');
 
 const app = express();
 
@@ -14,7 +15,7 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.use('/api',);
+app.use('/api',router);
   
 
 app.use(function (err, req, res, next) {
