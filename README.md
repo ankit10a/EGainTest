@@ -3,6 +3,6 @@
 # Please the following command for dependencies installation.
 npm i  
 
-# default PORT
+# Default APP PORT
 5000
 
