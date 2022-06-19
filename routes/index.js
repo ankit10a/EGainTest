@@ -1,29 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const exceptionsController = require('../controller/index');
 
-router.get('/exceptions',(req,res)=>{
-    console.log('api1');
-    res.status(200).send({
-        status: "success",
-        data: []
-    })
-})
+router.get('/exceptions',exceptionsController)
 
-router.get('/customers',(req,res)=>{
-    console.log('api1');
-    res.status(200).send({
-        status: "success",
-        data: []
-    })
-})
-
-router.get('/billing',(req,res)=>{
-    console.log('api1');
-    res.status(200).send({
-        status: "success",
-        data: []
-    })
-})
 
 
 module.exports = router;
