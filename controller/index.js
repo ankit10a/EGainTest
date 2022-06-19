@@ -4,21 +4,26 @@ const axios = require('axios');
 const exceptionsController = async(req, res)=>{
     const {plantype, deptId, amount} = req.query;
     try {
+        //check parameters 
         if(!plantype || !deptId || !amount){
             throw ('incorrect Parameter');
         }else if( deptId.length !== 3 ){
             throw ('incorrect Parameter');
         }
 
-        const externalURL = `https://assessments.reliscore.com/api`;
-        const billingData = await callExternalAPI(`${externalURL}/billing`,deptId,'get');
-
+        const externalURL = `https://assessments.reliscore.com/api`; // external Api URL
+        // billing Data 
+        const billingData = await callExternalAPI(`${externalURL}/billing`,deptId,'get'); 
+        // customers Data
         const customersData = await callExternalAPI(`${externalURL}/customers`,'get');
 
         Promise.all([billingData, customersData]);
 
+        // getting All customers from objects
         let allCustomers = [...Object.keys(billingData.data),...Object.keys(customersData.data)];
         allCustomers = [...new Set(allCustomers)];
+
+        // api logic implementation
         const exceptions= [];
         const missing = [];
         for(const ele of allCustomers){
@@ -30,6 +35,7 @@ const exceptionsController = async(req, res)=>{
                 exceptions.push(ele);
             } 
         }
+        
         return res.status(400).send({
             status: 'success',
             data: {exceptions,missing}
