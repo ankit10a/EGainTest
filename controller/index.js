@@ -36,7 +36,7 @@ const exceptionsController = async(req, res)=>{
             } 
         }
         
-        return res.status(400).send({
+        return res.status(200).send({
             status: 'success',
             data: {exceptions,missing}
         })
